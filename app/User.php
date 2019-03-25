@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -36,4 +37,11 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id');
+    }
+    
+
 }
